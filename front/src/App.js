@@ -26,18 +26,19 @@ export default function App() {
           <Col>
             <Link to='/produto' className='mr-4'>Produto</Link>
             <Link to='/supermercado'>Supermercado</Link>
+            
           </Col>
         </Row>
         <Switch>
           <Route
             path="/"
             exact={true}
-            component={() => <Lista />}
+            component={() => <Lista login={login}/>}
           />
           <Route
             path="/lista"
             exact={true}
-            component={() => <Lista />}
+            component={() => <Lista login={login}/>}
           />
           <Route
             path="/supermercado"

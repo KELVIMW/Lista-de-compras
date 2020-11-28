@@ -88,8 +88,9 @@ app.get('/logout', function (req, res) {
 
 app.get('/currentuser', (req, res) => {
     if (req.user) {
-        let { nome, mail } = req.user
-        res.send({ nome, mail })
+        console.log( req.user )
+        let { nome, mail, id } = req.user
+        res.send({ nome, mail, id })
     }
     else
         res.send({ nome: '', mail: '' })

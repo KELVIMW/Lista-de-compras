@@ -28,6 +28,23 @@ export default function Supermercado(props) {
             .catch(e => console.log(e.message))
     }
 
+    const addLista = idsupermercado => {        
+        let idusuario = props.login.id
+        api.post('/insertlista', { idsupermercado, idusuario })
+            .then(response => {
+                console.log(response.data)
+                if (response.data.erro)
+                    setErro(response.data.erro)
+                else {
+                    setSucesso('Lista registrada com sucesso')
+                    clear()
+                    load()
+                }
+            })
+            .catch(e => console.log(e.message))
+
+    }
+
     const insert = () => {
         setErro('')
         setSucesso('')
@@ -124,7 +141,11 @@ export default function Supermercado(props) {
                         <h6>Lista de supemercados</h6>
                     </Col>
                     <Col sm='12' className="border overflow-auto" style={{ maxHeight: 200 }}>
-                        {supermercados.map(item => <div key={item.idsupermercado} className='pt-2 pb-1'>{item.nome}</div>)}
+                        {supermercados.map(item =>
+                            <div key={item.idsupermercado} className='pt-2 pb-1'>
+                                <span class="mr-5"> {item.nome} </span>
+                                <Button onClick={() => addLista(item.idsupermercado)}> Add Lista </Button>
+                            </div>)}
                     </Col>
                 </Row>}
         </>

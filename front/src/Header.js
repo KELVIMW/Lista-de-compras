@@ -4,6 +4,8 @@ import {
     NavbarBrand,
     Button
 } from 'reactstrap';
+import { Link } from 'react-router-dom'
+
 import api from './api';
 
 export default function Header(props) {
@@ -19,7 +21,7 @@ export default function Header(props) {
 
     return (
         <Navbar>
-            <NavbarBrand>Lista de compras</NavbarBrand>
+            <NavbarBrand><Link to='/lista' className='mr-4'>Lista de Compra</Link></NavbarBrand>
             <div>
                 {props.login.nome === '' &&
                     <a href='http://localhost:3101/login'>Login</a>
