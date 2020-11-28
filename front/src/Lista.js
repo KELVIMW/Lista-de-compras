@@ -6,6 +6,7 @@ export default function Lista(props) {
     
     const [listaCompras, setLista] = useState([])
     const [product, setProduct] = useState('')
+    const [valor, setValor] = useState('')
 
     useEffect(() => load(), []);
 
@@ -35,7 +36,7 @@ export default function Lista(props) {
 
                         let idproduto = response.data.result[0].idproduto
 
-                        api.post('/insertprodutoporlista', {idlista, idproduto})
+                        api.post('/insertprodutoporlista', {idlista, idproduto, valor})
                             .then(response => {
                                 if (!response.data.erro)
                                 console.log( 'teste')
@@ -68,6 +69,12 @@ export default function Lista(props) {
                                     <Input 
                                         placeholder="Produto" 
                                         value={product} onChange={e => setProduct(e.target.value)}
+                                    /> 
+                                </Col>
+                                <Col sm='2'> 
+                                    <Input 
+                                        placeholder="Valor" 
+                                        value={valor} onChange={e => setValor(e.target.value)}
                                     /> 
                                 </Col>
                                 <Col sm='2'> <Button onClick={() => addProduct(item.idlista)}> Add </Button> </Col>
