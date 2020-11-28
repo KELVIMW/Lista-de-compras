@@ -8,7 +8,7 @@ export default function Lista(props) {
     const [listaProdutos, setProdutos] = useState([])
     
     const [product, setProduct] = useState([])
-    const [valor, setValor] = useState([])
+    const [val, setVal] = useState([])
 
     useEffect(() => load(), []);
 
@@ -19,9 +19,9 @@ export default function Lista(props) {
             setProduct(aux)
         }
         if(lista == 'Valor'){
-            const aux = valor
+            const aux = val
             aux[idItem] = item
-            setValor(aux)
+            setVal(aux)
         }
     }
 
@@ -49,8 +49,8 @@ export default function Lista(props) {
                     }  else{
 
                         let idproduto = response.data.result[0].idproduto
-                        let value = valor[idlista]
-                        api.post('/insertprodutoporlista', {idlista, idproduto, value})
+                        let valor = val[idlista]
+                        api.post('/insertprodutoporlista', {idlista, idproduto, valor})
                             .then(response => {
                                 if (!response.data.erro)
                                 console.log( 'teste')
@@ -132,7 +132,7 @@ export default function Lista(props) {
                                 <Col sm='2'> 
                                     <Input 
                                         placeholder="Valor" 
-                                        value={valor[item.idlista]} onChange={e => pushList('Valor', e.target.value, item.idlista)}
+                                        value={val[item.idlista]} onChange={e => pushList('Valor', e.target.value, item.idlista)}
                                     /> 
                                 </Col>
                                 <Col sm='3'> 
